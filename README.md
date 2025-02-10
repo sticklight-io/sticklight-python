@@ -11,7 +11,7 @@ pip install sticklight-python
 ## Quick Start
 
 ```python
-import sticklight_python as sl
+import sticklight as sl
 
 # Publish an event
 sl.capture({
