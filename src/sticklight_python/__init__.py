@@ -1,2 +1,1 @@
-def hello() -> str:
-    return "Hello from sticklight-python!"
+from .capture import capture as capture
