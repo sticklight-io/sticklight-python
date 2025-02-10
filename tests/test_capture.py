@@ -3,12 +3,12 @@ import os
 import pytest
 from util import assumes
 
-import sticklight_python as sl
-from sticklight_python import consts, errors
+import sticklight as sl
+from sticklight import consts, errors
 
 
 def test_importable_from_root():
-    from sticklight_python import capture
+    from sticklight import capture
 
     assert callable(capture), "capture should be callable"
 
