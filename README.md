@@ -1,6 +1,6 @@
 # Sticklight Python SDK
 
-The official Python SDK for [Sticklight](https://sticklight.io) - the analytics platform built for LLM-powered applications.
+The official Python SDK for [Sticklight](https://sticklight.io) - the <...>
 
 ## Installation
 
@@ -15,12 +15,9 @@ import sticklight_python as sl
 
 # Publish an event
 sl.capture({
-    "event": "llm_response",
-    "model": "gpt-4",
-    "prompt_tokens": 150,
-    "completion_tokens": 50,
-    "latency_ms": 2500,
-    "user_id": "user_123"
+    "event": "user_message",
+    "user_id": "user_123",
+    "message": "Help me with <...>",
 })
 ```
 
@@ -38,19 +35,19 @@ You'll need a Sticklight API key to use this SDK. You can either:
    sl.capture(data, sticklight_api_key="your-api-key")
    ```
 
+To get your API key, go to the [Sticklight dashboard](https://app.sticklight.io/settings/api-keys) and create a new key.
+
 ## Requirements
 
 - Python 3.11 or higher
-- `requests` library (automatically installed)
 
 ## About Sticklight
 
-Sticklight provides analytics and monitoring for LLM-powered applications, giving product managers and developers the insights they need to build better AI products. Our platform helps you:
+Sticklight provides <...> for <...>, giving product managers and developers <value prop>. Our platform helps you:
 
-- Track and analyze LLM usage patterns
-- Monitor performance and costs
-- Understand user interactions
-- Make data-driven decisions about your AI features
+- <...>
+- <...>
+- <...>
 
 ## License
 
