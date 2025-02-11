@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Build the package
+uv build
+
+# Upload the package to PyPI
+uv publish --token "$PYPI_TOKEN"
