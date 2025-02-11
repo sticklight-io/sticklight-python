@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Remove the dist directory if it exists
+rm -rf dist 2>/dev/null || true
+
 # Build the package
 uv build
 
