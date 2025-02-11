@@ -6,11 +6,16 @@ readme = "README.md"
 
 requires-python = ">=3.11"
 dependencies = [
+    "aiohttp[speedups]>=3.11.12",
     "requests>=2.32.3",
 ]
 
 [tool.uv.sources]
-sticklight = { path = "./src/sticklight_python" }
+sticklight = { path = "./src/sticklight" }
+
+# Required because /src/sticklight doesn't have the same name as the project (sticklight-python)
+[tool.hatch.build.targets.wheel]
+include = ["sticklight"]
 
 [build-system]
 requires = ["hatchling"]
@@ -24,9 +29,9 @@ dev = [
 
 [tool.ruff]
 indent-width = 4
-line-length = 80
+line-length = 80  # And not >=100 because the project is customer-facing.
 output-format = "grouped"
-target-version = "py312"
+target-version = "py311"
 show-fixes = true
 
 [tool.ruff.lint.per-file-ignores]
@@ -45,6 +50,7 @@ line-ending = "auto"
 quote-style = "double"
 skip-magic-trailing-comma = true
 
+# Mirrors platform repo.
 [tool.ruff.lint]
 select = [
   "A001",      # builtin-variable-shadowing (lint.flake8-builtins.builtins-ignorelist)

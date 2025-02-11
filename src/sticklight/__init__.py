@@ -1,1 +1,1 @@
-from .capture import capture as capture
+from .capture import acapture as acapture, capture as capture
