@@ -610,7 +610,7 @@ wheels = [
 ]
 
 [[package]]
-name = "sticklight-python"
+name = "sticklight"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

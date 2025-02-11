@@ -1,5 +1,5 @@
 [project]
-name = "sticklight-python"
+name = "sticklight"
 version = "0.1.0"
 description = "The Official Sticklight Python SDK"
 readme = "README.md"
