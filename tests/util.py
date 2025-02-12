@@ -11,9 +11,9 @@ def assumes(
     """
     Declare and enforce preconditions for a test before running it.
     """
-    for condition in conditions:
+    for i, condition in enumerate(conditions):
         if not condition:
-            pytest.fail("Test precondition not met")
+            pytest.fail(f"Test precondition number {i + 1} not met")
 
     def wrapper(func: Callable[[T], None]) -> Callable[[T], None]:
         return func

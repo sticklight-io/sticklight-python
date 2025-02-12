@@ -1,3 +1,3 @@
 #!/bin/bash
 
-PYTHONPATH=src pytest tests -x -s
+uv run pytest tests -x -s "$@"

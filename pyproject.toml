@@ -1,6 +1,6 @@
 [project]
 name = "sticklight"
-version = "0.1.4"
+version = "0.1.5"
 description = "The Official Sticklight Python SDK"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -47,11 +47,11 @@ dev = [
 
 # Both tool.hatch settings are required for publishing to PyPI.
 [tool.hatch.build]
-packages = ["src/sticklight"]
+packages = ["sticklight"]
 
-[tool.hatch.build.targets.wheel]
-sources = ["src"]
-include = ["sticklight/**/*"]
+# [tool.hatch.build.targets.wheel]
+# sources = ["src"]
+# include = ["sticklight/**/*"]
 
 [build-system]
 requires = ["hatchling"]
