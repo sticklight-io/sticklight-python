@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function .success(){
+    printf "\n \x1b[2m[\x1b[0m%s\x1b[2m]\x1b[0m\x1b[92m %s\x1b[0m\n" "*" "✅ ${1}" 1>&2
+}
+
+function .warning(){
+    printf "\n \x1b[2m[\x1b[0m%s\x1b[2m]\x1b[0m\x1b[93m %s\x1b[0m\n" "*" "⚠️ WARNING: ${1}" 1>&2
+}
+
+function .error(){
+    printf "\n \x1b[2m[\x1b[0m%s\x1b[2m]\x1b[0m\x1b[91m %s\x1b[0m\n" "*" "❗ERROR: ${1}" 1>&2
+}
