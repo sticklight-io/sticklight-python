@@ -8,31 +8,55 @@ dependencies = [
     "aiohttp[speedups]>=3.11.12",
     "requests>=2.32.3",
 ]
-
-
-# Both tool.hatch settings are required for publishing to PyPI.
-[tool.hatch.build]
-packages = [
-    "src/sticklight",
+keywords = [
+  "sticklight",
+  "ai",
+  "llm",
+  "product analytics",
+  "product",
+  "analytics",
+  "agent",
+  "data",
+  "platform",
+  "openai",
+  "anthropic",
+  "gpt",
+  "chatbot"
 ]
-
-[tool.hatch.build.targets.wheel]
-sources = [
-    "src",
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers", 
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
 ]
-include = [
-    "sticklight/**/*",
-]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[project.urls]
+Homepage = "https://sticklight.com"
+Issues = "https://github.com/sticklight/sticklight-python/issues"
+Repository = "https://github.com/sticklight/sticklight-python"
+Documentation = "https://docs.sticklight.com"
+Changelog = "https://github.com/sticklight/sticklight-python/blob/main/CHANGELOG.md"
 
 [dependency-groups]
 dev = [
     "pytest>=8.3.4",
     "ruff>=0.9.6",
 ]
+
+
+
+# Both tool.hatch settings are required for publishing to PyPI.
+[tool.hatch.build]
+packages = ["src/sticklight"]
+
+[tool.hatch.build.targets.wheel]
+sources = ["src"]
+include = ["sticklight/**/*"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 
 [tool.ruff]
 indent-width = 4
