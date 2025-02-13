@@ -31,10 +31,10 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
 ]
 [project.urls]
-Homepage = "https://sticklight.com"
+Homepage = "https://sticklight.io"
 Issues = "https://github.com/sticklight/sticklight-python/issues"
 Repository = "https://github.com/sticklight/sticklight-python"
-Documentation = "https://docs.sticklight.com"
+Documentation = "https://docs.sticklight.io"
 Changelog = "https://github.com/sticklight/sticklight-python/blob/main/CHANGELOG.md"
 
 [dependency-groups]
