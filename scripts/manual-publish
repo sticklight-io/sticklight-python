@@ -12,7 +12,7 @@ source ./scripts/.common
 }
 
 [[ "$1" == "--bump" ]] && {
-    ./scripts/bumpversion.py || {
+    uv run ./scripts/bumpversion.py || {
         # Confirm with the user to proceed
         read -p "Version was not bumped. Continue with publish? (y/n): " confirm
         [[ "$confirm" == [yY] ]] || exit 1
