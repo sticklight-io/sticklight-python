@@ -16,6 +16,7 @@ writing the new version to pyproject.toml.
 """
 
 import sys
+from pathlib import Path
 
 import semver
 import tomli
@@ -27,7 +28,7 @@ def main():
     skip_confirmation = "-y" in sys.argv[1:]
 
     # Read current version from pyproject.toml
-    with open("pyproject.toml", "rb") as f:
+    with Path("pyproject.toml").open("rb") as f:
         pyproject = tomli.load(f)
 
     current_version = pyproject["project"]["version"]
@@ -47,7 +48,7 @@ def main():
 
     # Update version in pyproject.toml
     pyproject["project"]["version"] = new_version
-    with open("pyproject.toml", "wb") as f:
+    with Path("pyproject.toml").open("wb") as f:
         tomli_w.dump(pyproject, f)
 
     print(f"Bumped version from {current_version} to {new_version}")

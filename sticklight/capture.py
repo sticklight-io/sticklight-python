@@ -2,7 +2,7 @@ import typing
 
 import requests
 
-from . import auth, consts, context
+from ._post_event import apost_event, post_event
 
 if typing.TYPE_CHECKING:
     import aiohttp
@@ -19,21 +19,7 @@ def capture(event_name: str, **event_data) -> requests.Response:
     Returns:
         requests.Response: The response from the Sticklight API.
     """
-    sticklight_api_key = auth.resolve_sticklight_api_key()
-    response = requests.post(
-        f"{context.get_api_base_url()}/events-collect/v1/events",
-        json=[{"event_name": event_name, **event_data}],
-        headers={"accept": "application/json", "x-api-key": sticklight_api_key},
-        timeout=30,
-    )
-    try:
-        response.raise_for_status()
-    except Exception as e:
-        import logging
-
-        logger = logging.getLogger("sticklight.capture")
-        logger.error("Error capturing event %s: %r", event_name, e)
-    return response
+    return post_event(event_name, **event_data)
 
 
 async def acapture(event_name: str, **event_data) -> "aiohttp.ClientResponse":
@@ -47,29 +33,7 @@ async def acapture(event_name: str, **event_data) -> "aiohttp.ClientResponse":
     Returns:
         aiohttp.ClientResponse: The response from the Sticklight API.
     """
-    import aiohttp
-
-    sticklight_api_key = auth.resolve_sticklight_api_key()
-    async with (
-        aiohttp.ClientSession() as session,
-        session.post(
-            f"{context.get_api_base_url()}/events-collect/v1/events",
-            json=[{"event_name": event_name, **event_data}],
-            headers={
-                "accept": "application/json",
-                "x-api-key": sticklight_api_key,
-            },
-            timeout=30,
-        ) as response,
-    ):
-        try:
-            response.raise_for_status()
-        except Exception as e:
-            import logging
-
-            logger = logging.getLogger("sticklight.acapture")
-            logger.error("Error capturing event %s: %r", event_name, e)
-        return response
+    return await apost_event(event_name, **event_data)
 
 
 __all__ = ["acapture", "capture"]
