@@ -24,7 +24,7 @@ def init(api_key: str, api_base_url: str | None = None) -> "requests.Response":
     context.set_api_key(api_key)
     if api_base_url:
         context.set_api_base_url(api_base_url)
-    return post_event("sticklight_init", {"api_base_url": api_base_url})
+    return post_event("sticklight_init", api_base_url=api_base_url)
 
 
 async def ainit(
@@ -36,7 +36,7 @@ async def ainit(
     context.set_api_key(api_key)
     if api_base_url:
         context.set_api_base_url(api_base_url)
-    return await apost_event("sticklight_init", {"api_base_url": api_base_url})
+    return await apost_event("sticklight_init", api_base_url=api_base_url)
 
 
 __all__ = ["ainit", "init"]

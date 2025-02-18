@@ -1,14 +1,13 @@
 import typing
 
-import requests
-
 from ._post_event import apost_event, post_event
 
 if typing.TYPE_CHECKING:
     import aiohttp
+    import requests
 
 
-def capture(event_name: str, **event_data) -> requests.Response:
+def capture(event_name: str, **event_data) -> "requests.Response":
     """
     Publish an event to Sticklight API.
 

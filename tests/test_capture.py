@@ -1,10 +1,7 @@
-import os
-
-import pytest
 from util import assumes
 
 import sticklight as sl
-from sticklight import consts, errors
+from sticklight import context
 
 
 def test_importable_from_root():
@@ -13,21 +10,19 @@ def test_importable_from_root():
     assert callable(capture), "capture should be callable"
 
 
-def test_raises_error_when_api_key_not_found(monkeypatch: pytest.MonkeyPatch):
-    monkeypatch.delenv(consts.STICKLIGHT_API_KEY_ENV_VAR_NAME, raising=False)
-    with pytest.raises(errors.SticklightApiKeyNotFoundError):
-        sl.capture({"event": "test"}, sticklight_api_key=None)
-
-
-@assumes(os.getenv(consts.STICKLIGHT_API_KEY_ENV_VAR_NAME) is not None)
+@assumes(
+    context.get_api_key() is not None, context.get_api_base_url() is not None
+)
 def test_no_error_when_api_key_provided_from_env():
-    sl.capture({"event": "test"}, sticklight_api_key=None)
+    sl.capture("test_event_name")
 
 
-@assumes(os.getenv(consts.STICKLIGHT_API_KEY_ENV_VAR_NAME) is not None)
-def test_no_error_when_api_key_provided_as_argument(
-    monkeypatch: pytest.MonkeyPatch,
-):
-    sticklight_api_key = os.getenv(consts.STICKLIGHT_API_KEY_ENV_VAR_NAME)
-    monkeypatch.delenv(consts.STICKLIGHT_API_KEY_ENV_VAR_NAME, raising=False)
-    sl.capture({"event": "test"}, sticklight_api_key=sticklight_api_key)
+@assumes(
+    context.get_api_key() is not None, context.get_api_base_url() is not None
+)
+def test_no_error_when_api_key_provided_as_via_init():
+    sticklight_api_key = context.get_api_key()
+    context.sticklight_api_key_ctx_var.set(None)
+    sl.init(sticklight_api_key)
+    sl.capture("test_event_name")
+    assert context.get_api_key() == sticklight_api_key
