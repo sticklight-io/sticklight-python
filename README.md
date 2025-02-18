@@ -4,8 +4,10 @@ The official Python SDK for [Sticklight](https://sticklight.io).
 
 ## Installation
 
-```bash
+```sh
 pip install sticklight
+# OR
+uv add sticklight
 ```
 
 ## Quick Start
@@ -13,13 +15,15 @@ pip install sticklight
 ```python
 import sticklight as sl
 
+# Authenticate with your API key
+sl.init("your-api-key")
+
 # Publish an event
-sl.capture({
-    "event_name": "user_message",
-    "user_id": "user_123",
-    "message": "I need help with this and that feature",
-    ...  # Any other data you want to track
-})
+sl.capture(
+    "user_sent_message",
+    user_id="user_123",
+    message="I need help with your new feature",
+)
 ```
 
 ## Authentication
@@ -27,13 +31,13 @@ sl.capture({
 You'll need a Sticklight API key to use this SDK. You can either:
 
 1. Set it as an environment variable:
-   ```bash
+   ```sh
    export STICKLIGHT_API_KEY="your-api-key"
    ```
 
-2. Pass it directly to the capture function:
+2. Use `init` to authenticate at the start of your application:
    ```python
-   sl.capture(data, sticklight_api_key="your-api-key")
+   sl.init("your-api-key")
    ```
 
 To get your API key, go to the [Sticklight Platform] and create a new key.
@@ -54,9 +58,9 @@ Think of it as product analytics, but specifically designed for the unique chall
 
 ## Development
 
-```bash
+```sh
 # Clone the repository
-git clone https://github.com/sticklight/sticklight-python.git
+git clone https://github.com/sticklight-io/sticklight-python.git
 cd sticklight-python
 
 # Install dependencies
@@ -76,8 +80,8 @@ Apache 2.0
 ## Support
 
 - Documentation: [docs.sticklight.io](https://docs.sticklight.io)
-- Issues: [GitHub Issues](https://github.com/sticklight/sticklight-python/issues)
-- Email: hello@sticklight.io
+- Issues: [GitHub Issues](https://github.com/sticklight-io/sticklight-python/issues)
+- Email: support@sticklight.io
 - [Book a demo](https://calendly.com/matan-sticklight/30min)
 
 [Sticklight Platform]: https://platform.sticklight.io

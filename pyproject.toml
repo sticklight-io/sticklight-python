@@ -9,19 +9,19 @@ dependencies = [
     "requests>=2.32.3",
 ]
 keywords = [
-  "sticklight",
-  "ai",
-  "llm",
-  "product analytics",
-  "product",
-  "analytics",
-  "agent",
-  "data",
-  "platform",
-  "openai",
-  "anthropic",
-  "gpt",
-  "chatbot"
+    "sticklight",
+    "ai",
+    "llm",
+    "product analytics",
+    "product",
+    "analytics",
+    "agent",
+    "data",
+    "platform",
+    "openai",
+    "anthropic",
+    "gpt",
+    "chatbot",
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
