@@ -44,7 +44,6 @@ To get your API key, go to the [Sticklight Platform] and create a new key.
 
 ## About Sticklight
 
-### Book your Demo now
 Sticklight provides precise and actionable analytics for AI-powered products, giving product managers and developers deep insights into how users interact with their AI features. Our platform helps you:
 
 - Understand user patterns and behaviors in LLM interactions
@@ -72,7 +71,7 @@ uv run scripts/manual-publish
 
 ## License
 
-MIT
+Apache 2.0
 
 ## Support
 
@@ -81,4 +80,4 @@ MIT
 - Email: hello@sticklight.io
 - [Book a demo](https://calendly.com/matan-sticklight/30min)
 
-[Sticklight Platform]: https://platform.sticklight.io/sticklight/settings?section=team&subSection=api-keys
+[Sticklight Platform]: https://platform.sticklight.io

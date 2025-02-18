@@ -2,68 +2,73 @@ import typing
 
 import requests
 
-from .auth import resolve_sticklight_api_key
-from .consts import STICKLIGHT_API_BASE_URL
+from . import auth, consts, context
 
 if typing.TYPE_CHECKING:
     import aiohttp
 
 
-def capture(
-    data: dict, *, sticklight_api_key: str | None = None
-) -> requests.Response:
+def capture(event_name: str, **event_data) -> requests.Response:
     """
     Publish an event to Sticklight API.
 
     Args:
-        data (dict): A free-form dictionary of data to publish.
-        sticklight_api_key (str, optional): The Sticklight API key to use. Defaults to None.
-            Either pass it to the function or set the STICKLIGHT_API_KEY environment variable.
+        event_name (str): The name of the event to publish.
+        event_data (dict): A free-form dictionary of data to publish.
 
     Returns:
         requests.Response: The response from the Sticklight API.
     """
-    sticklight_api_key = resolve_sticklight_api_key(sticklight_api_key)
+    sticklight_api_key = auth.resolve_sticklight_api_key()
     response = requests.post(
-        f"{STICKLIGHT_API_BASE_URL}/events-collect/v1/events",
-        json=[data],
+        f"{context.get_api_base_url()}/events-collect/v1/events",
+        json=[{"event_name": event_name, **event_data}],
         headers={"accept": "application/json", "x-api-key": sticklight_api_key},
-        timeout=5,
+        timeout=30,
     )
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except Exception as e:
+        import logging
+
+        logger = logging.getLogger("sticklight.capture")
+        logger.error("Error capturing event %s: %r", event_name, e)
     return response
 
 
-async def acapture(
-    data: dict, *, sticklight_api_key: str | None = None
-) -> "aiohttp.ClientResponse":
+async def acapture(event_name: str, **event_data) -> "aiohttp.ClientResponse":
     """
     Publish an event to Sticklight API asynchronously.
 
     Args:
-        data (dict): A free-form dictionary of data to publish.
-        sticklight_api_key (str, optional): The Sticklight API key to use. Defaults to None.
-            Either pass it to the function or set the STICKLIGHT_API_KEY environment variable.
+        event_name (str): The name of the event to publish.
+        event_data (dict): A free-form dictionary of data to publish.
 
     Returns:
         aiohttp.ClientResponse: The response from the Sticklight API.
     """
     import aiohttp
 
-    sticklight_api_key = resolve_sticklight_api_key(sticklight_api_key)
+    sticklight_api_key = auth.resolve_sticklight_api_key()
     async with (
         aiohttp.ClientSession() as session,
         session.post(
-            f"{STICKLIGHT_API_BASE_URL}/events-collect/v1/events",
-            json=[data],
+            f"{context.get_api_base_url()}/events-collect/v1/events",
+            json=[{"event_name": event_name, **event_data}],
             headers={
                 "accept": "application/json",
                 "x-api-key": sticklight_api_key,
             },
-            timeout=5,
+            timeout=30,
         ) as response,
     ):
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except Exception as e:
+            import logging
+
+            logger = logging.getLogger("sticklight.acapture")
+            logger.error("Error capturing event %s: %r", event_name, e)
         return response
 
 
