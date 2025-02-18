@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Usage: ./scripts/lint
+#
+# Lint and format the code with ruff.
+
+uv run ruff check --unsafe-fixes --preview --fix
+uv run ruff format --preview

@@ -65,6 +65,7 @@ line-length = 80  # And not >=100 because the project is customer-facing.
 output-format = "grouped"
 target-version = "py311"
 show-fixes = true
+exclude = ["pyproject.toml", "dist"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = [
