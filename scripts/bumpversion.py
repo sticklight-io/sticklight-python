@@ -3,33 +3,28 @@
 # requires-python = ">=3.11"
 # dependencies = [
 #     "semver",
-#     "tomli",
-#     "tomli-w",
 # ]
 # ///
 
 """
 Usage: ./scripts/bumpversion [-y]
 
-Unless -y is provided, the script will confirm the version bump with the user before
-writing the new version to pyproject.toml.
+Will confirm whether to bump the version unless -y flag is provided.
 """
 
+import re
 import sys
 from pathlib import Path
 
 import semver
-import tomli
-import tomli_w
 
 
 def main():
-    # Check if -y flag is provided
     skip_confirmation = "-y" in sys.argv[1:]
 
     # Read current version from pyproject.toml
-    with Path("pyproject.toml").open("rb") as f:
-        pyproject = tomli.load(f)
+    with Path("pyproject.toml").open("r") as f:
+        pyproject = f.read()
 
     current_version = pyproject["project"]["version"]
     new_version = str(semver.VersionInfo.parse(current_version).bump_patch())
@@ -47,9 +42,12 @@ def main():
             sys.exit(1)
 
     # Update version in pyproject.toml
-    pyproject["project"]["version"] = new_version
-    with Path("pyproject.toml").open("wb") as f:
-        tomli_w.dump(pyproject, f)
+    pyproject = re.sub(
+        r"version *= *\"(.*)\"", f'version = "{new_version}"', pyproject
+    )
+
+    with Path("pyproject.toml").open("w") as f:
+        f.write(pyproject)
 
     print(f"Bumped version from {current_version} to {new_version}")
 

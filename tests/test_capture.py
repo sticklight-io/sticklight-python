@@ -5,9 +5,7 @@ from sticklight import context
 
 
 def test_importable_from_root():
-    from sticklight import capture
-
-    assert callable(capture), "capture should be callable"
+    assert callable(sl.capture), "sl.capture should be callable"
 
 
 @assumes(
