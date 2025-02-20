@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+function main(){
+    [[ -d ./dist ]] && rm -rf ./dist
+
+    # Build the package
+    uv build || {
+        .error "Failed to build the package"
+        exit 1
+    }
+}
+
+# Run only when executed, not sourced
+if [[ "${BASH_SOURCE}" == "${0}" ]]; then
+    main "$@"
+fi

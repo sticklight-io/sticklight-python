@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# Usage: ./scripts/manual-publish [--bump]
+# Usage: uv run scripts/publish [--bump]
 #
 # If --bump is provided, the version will be bumped in pyproject.toml before publishing (with confirmation prompt).
 
-source ./scripts/.common
+set -e 
+
+source scripts/.common
 
 [[ "$PYPI_TOKEN" != pypi-* ]] && {
     .error "PYPI_TOKEN env var is either not set or invalid. Current value of PYPI_TOKEN='${PYPI_TOKEN}'"
@@ -12,20 +14,15 @@ source ./scripts/.common
 }
 
 [[ "$1" == "--bump" ]] && {
-    uv run ./scripts/bumpversion.py || {
+    uv run scripts/bumpversion.py || {
         # Confirm with the user to proceed
         read -p "Version was not bumped. Continue with publish? (y/n): " confirm
         [[ "$confirm" == [yY] ]] || exit 1
     }
 }
 
-[[ -d ./dist ]] && rm -rf ./dist
-
 # Build the package
-uv build || {
-    .error "Failed to build the package"
-    exit 1
-}
+uv run scripts/build
 
 # Upload the package to PyPI
 uv publish --token "$PYPI_TOKEN" || {
@@ -33,4 +30,4 @@ uv publish --token "$PYPI_TOKEN" || {
     exit 1
 }
 
-.success "Published to PyPI. Package will be available to pip install in a few minutes."
+.success "Published sticklight-python to PyPI."
