@@ -23,6 +23,7 @@ sl.capture(
     "user_sent_message",
     user_id="user_123",
     message="I need help with your new feature",
+    #  ... Any other data you want to track
 )
 ```
 
@@ -41,6 +42,23 @@ You'll need a Sticklight API key to use this SDK. You can either:
    ```
 
 To get your API key, go to the [Sticklight Platform] and create a new key.
+
+# Identifying Users
+
+It's important to identify users in order to track their behavior across different sessions.
+It's encouraged to identify users early on in your application, ideally right after authentication.
+
+```python
+import sticklight as sl
+
+sl.identify(
+    "unique_user_id_123",
+    name="John Doe",
+    email="john.doe@example.com",
+)
+```
+
+`sl.identify` stores the information it receives in the current process context, and automatically adds it to the payload of all events captured during that process.
 
 ## Requirements
 
@@ -69,8 +87,8 @@ uv sync --dev
 # Run tests
 uv run scripts/test
 
-# Publish to PyPI
-uv run scripts/manual-publish
+# Run lint
+uv run scripts/lint
 ```
 
 ## License
