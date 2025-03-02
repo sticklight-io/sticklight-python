@@ -1,6 +1,6 @@
 [project]
 name = "sticklight"
-version = "0.1.6"
+version = "0.1.7"
 description = "The Official Sticklight Python SDK"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -74,7 +74,7 @@ build-backend = "hatchling.build"
 indent-width = 4
 line-length = 80  # And not >=100 because the project is customer-facing.
 output-format = "grouped"
-target-version = "py311"
+target-version = "0.1.7"
 show-fixes = true
 exclude = ["pyproject.toml", "dist"]
 

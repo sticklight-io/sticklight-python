@@ -1,8 +1,9 @@
 #!uv run
 # /// script
-# requires-python = ">=3.11"
+# requires-python = ">=3.10"
 # dependencies = [
 #     "semver",
+#     "tomli",
 # ]
 # ///
 
@@ -17,6 +18,7 @@ import sys
 from pathlib import Path
 
 import semver
+import tomli
 
 
 def main():
@@ -24,9 +26,10 @@ def main():
 
     # Read current version from pyproject.toml
     with Path("pyproject.toml").open("r") as f:
-        pyproject = f.read()
+        pyproject_str = f.read()
+    pyproject_dict = tomli.loads(pyproject_str)
 
-    current_version = pyproject["project"]["version"]
+    current_version = pyproject_dict["project"]["version"]
     new_version = str(semver.VersionInfo.parse(current_version).bump_patch())
 
     # Get user confirmation unless -y flag is provided
@@ -42,14 +45,21 @@ def main():
             sys.exit(1)
 
     # Update version in pyproject.toml
-    pyproject = re.sub(
-        r"version *= *\"(.*)\"", f'version = "{new_version}"', pyproject
+    pyproject_str = re.sub(
+        r"version *= *\"(.*)\"", f'version = "{new_version}"', pyproject_str
     )
 
     with Path("pyproject.toml").open("w") as f:
-        f.write(pyproject)
+        f.write(pyproject_str)
 
-    print(f"Bumped version from {current_version} to {new_version}")
+    # Confirm that the version was updated
+    with Path("pyproject.toml").open("r") as f:
+        actual_version = tomli.loads(f.read())["project"]["version"]
+        assert actual_version == new_version, (
+            f"Version was not updated in pyproject.toml. Expected {new_version}, got {actual_version}"
+        )
+
+    print(f"✅ Bumped version from {current_version} to {new_version}")
 
 
 if __name__ == "__main__":
