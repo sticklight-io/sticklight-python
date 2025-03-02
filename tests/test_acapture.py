@@ -27,8 +27,7 @@ async def test_importable_from_root():
 )
 @pytest.mark.asyncio
 async def test_no_error_when_api_key_provided_from_env():
-    aresponse = sl.acapture("test_event_name")
-    await aresponse
+    await sl.acapture("test_event_name")
 
 
 @assumes(

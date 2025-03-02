@@ -1,9 +1,8 @@
 import importlib
 
-from util import assumes
-
 import sticklight as sl
 from sticklight import context
+from tests.util import assumes
 
 
 def test_importable_from_root():
