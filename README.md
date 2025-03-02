@@ -43,23 +43,6 @@ You'll need a Sticklight API key to use this SDK. You can either:
 
 To get your API key, go to the [Sticklight Platform] and create a new key.
 
-# Identifying Users
-
-It's important to identify users in order to track their behavior across different sessions.
-It's encouraged to identify users early on in your application, ideally right after authentication.
-
-```python
-import sticklight as sl
-
-sl.identify(
-    "unique_user_id_123",
-    name="John Doe",
-    email="john.doe@example.com",
-)
-```
-
-`sl.identify` stores the information it receives in the current process context, and automatically adds it to the payload of all events captured during that process.
-
 ## Requirements
 
 - Python 3.11 or higher
