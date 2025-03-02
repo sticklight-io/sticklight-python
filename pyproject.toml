@@ -74,7 +74,7 @@ build-backend = "hatchling.build"
 indent-width = 4
 line-length = 80  # And not >=100 because the project is customer-facing.
 output-format = "grouped"
-target-version = "0.1.7"
+target-version = "py310"
 show-fixes = true
 exclude = ["pyproject.toml", "dist"]
 

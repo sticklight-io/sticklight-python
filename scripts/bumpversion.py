@@ -46,7 +46,10 @@ def main():
 
     # Update version in pyproject.toml
     pyproject_str = re.sub(
-        r"version *= *\"(.*)\"", f'version = "{new_version}"', pyproject_str
+        f'version *= *"{current_version}"',
+        f'version = "{new_version}"',
+        pyproject_str,
+        count=1,
     )
 
     with Path("pyproject.toml").open("w") as f:
