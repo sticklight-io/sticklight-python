@@ -54,6 +54,8 @@ dev = [
 ]
 
 
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
 
 # Both tool.hatch settings are required for publishing to PyPI.
 [tool.hatch.build]
@@ -231,3 +233,4 @@ unfixable = [
 [tool.ruff.analyze]
 detect-string-imports = true
 preview = true
+

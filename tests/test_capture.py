@@ -1,3 +1,5 @@
+import importlib
+
 from util import assumes
 
 import sticklight as sl
@@ -5,7 +7,8 @@ from sticklight import context
 
 
 def test_importable_from_root():
-    assert callable(sl.capture), "sl.capture should be callable"
+    sticklight = importlib.import_module("sticklight")
+    assert callable(sticklight.capture), "sticklight.capture should be callable"
 
 
 @assumes(
