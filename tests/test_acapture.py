@@ -7,9 +7,6 @@ import sticklight as sl
 from sticklight import context
 from tests.util import assumes
 
-# We need to use pytest.mark.asyncio to mark our test functions as async
-# This tells pytest to handle the async functions properly
-
 
 @pytest.mark.asyncio
 async def test_importable_from_root():
