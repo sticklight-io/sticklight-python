@@ -23,6 +23,7 @@ sl.capture(
     "user_sent_message",
     user_id="user_123",
     message="I need help with your new feature",
+    #  ... Any other data you want to track
 )
 ```
 
@@ -69,8 +70,8 @@ uv sync --dev
 # Run tests
 uv run scripts/test
 
-# Publish to PyPI
-uv run scripts/manual-publish
+# Run lint
+uv run scripts/lint
 ```
 
 ## License
@@ -79,9 +80,10 @@ Apache 2.0
 
 ## Support
 
-- Documentation: [docs.sticklight.io](https://docs.sticklight.io)
-- Issues: [GitHub Issues](https://github.com/sticklight-io/sticklight-python/issues)
-- Email: support@sticklight.io
+- [Website](https://sticklight.io)
+- [Documentation](https://docs.sticklight.io)
+- [GitHub Issues](https://github.com/sticklight-io/sticklight-python/issues)
+- [Email](mailto:support@sticklight.io)
 - [Book a demo](https://calendly.com/matan-sticklight/30min)
 
 [Sticklight Platform]: https://platform.sticklight.io

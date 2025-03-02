@@ -5,11 +5,11 @@ from .errors import SticklightApiKeyNotFoundError
 
 def resolve_sticklight_api_key(sticklight_api_key: str | None = None) -> str:
     """
-    Resolve the Sticklight API key with the following order of precedence:
-    1. Value passed to the function
-    2. Value stored via `sticklight.init(api_key=...)`
-    3. Value stored via the `STICKLIGHT_API_KEY` environment variable
-    4. If no API key could be resolved, throw a `SticklightApiKeyNotFoundError`
+    Resolves Sticklight API key with the following precedence:
+    1. Function argument
+    2. Value from `sticklight.init(api_key=...)`
+    3. `STICKLIGHT_API_KEY` environment variable
+    4. Raises `SticklightApiKeyNotFoundError` if no key found
     """
     if sticklight_api_key:
         return sticklight_api_key
