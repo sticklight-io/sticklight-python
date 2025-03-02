@@ -97,9 +97,10 @@ Apache 2.0
 
 ## Support
 
-- Documentation: [docs.sticklight.io](https://docs.sticklight.io)
-- Issues: [GitHub Issues](https://github.com/sticklight-io/sticklight-python/issues)
-- Email: support@sticklight.io
+- [Website](https://sticklight.io)
+- [Documentation](https://docs.sticklight.io)
+- [GitHub Issues](https://github.com/sticklight-io/sticklight-python/issues)
+- [Email](mailto:support@sticklight.io)
 - [Book a demo](https://calendly.com/matan-sticklight/30min)
 
 [Sticklight Platform]: https://platform.sticklight.io
